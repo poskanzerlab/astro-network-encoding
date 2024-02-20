@@ -6,7 +6,7 @@ Accompanying the paper "Network-level encoding of local neurotransmitters in cor
 
 Code written and run using Python 3.8.18 (Max Collard).
 
-See `requirements.txt` for versions of other dependencies used.
+See `environments/astro-network-encoding.yml` for versions of other dependencies used.
 
 ## Instructions
 
