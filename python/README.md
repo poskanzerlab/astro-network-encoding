@@ -1,6 +1,6 @@
 # astro-network-encoding - Python scripts
 
-Accompanying the paper "Network-level encoding of local neurotransmitters in cortical astrocytes" (DOI: TODO)
+Accompanying the paper "Network-level encoding of local neurotransmitters in cortical astrocytes" (DOI: TODO, forthcoming)
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ conda env create -n astro-network-encoding -f=environments/astro-network-encodin
 
 These scripts take as input HDF-5 files (or `mat`-files in a HDF-compatible format) that contain summarized tables of AQuA event characteristics, in order to  save memory and hard disk space.
 
-The event files used for generating figures in the paper are located in the [Dryad repository](TODO) (link pending data deposition), as `events.zip`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
+The event files used for generating figures in the paper are located in the [Dryad repository](TODO) (DOI pending data deposition), as `events.zip`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
 1. Place the extracted contents of `events.zip` into `data/` (so that `data/events/` should contain many subdirectories, such as `1pulse`, `cbx`, etc.).
 
 To generate your own event tables from full AQuA `res` files, run the MATLAB conversion script `conversion/aqua_export.m` on your dataset (see documentation there).
@@ -30,7 +30,7 @@ To generate your own event tables from full AQuA `res` files, run the MATLAB con
 
 These scripts also take as input files specifying the "ramping" characteristics of individual cells (see paper *Methods*).
 
-The ramping cell specification files used in the paper are located in the [Dryad repository](TODO) (link pending data deposition), as `ramping.zip`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
+The ramping cell specification files used in the paper are located in the [Dryad repository](TODO) (DOI pending data deposition), as `ramping.zip`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
 1. Place the extracted contents of `ramping.zip` into `intermediates/` (so that `intermediates/ramping/` should contain many `csv` files, such as `ramping_CBX-GABA.csv`, etc.).
 
 To generate your own ramping cell tables from extracted event tables, see `net_astro-ramping.ipynb`.
