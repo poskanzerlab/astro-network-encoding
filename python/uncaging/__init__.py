@@ -155,7 +155,7 @@ def _unwrap_yaml_filename_spec( raw_spec: list ) -> list:
 
     return ret
 
-type ReplacementSpec = 'dict[str, Any]'
+ReplacementSpec = 'dict[str, Any]'
 
 def _replace_objects(
         t: tuple,
@@ -248,11 +248,11 @@ def _spec_replace(
 ## ------------------------------------------------------------------------ ##
 
 # Some type shortcuts, for brevity
-type HelperConfigPath = 'Optional[Union[str, Path, list[Union[str, Path]]]]'
-type HelperOutputPath = Optional[Union[str, Path]]
-type HelperFilenameSpec = 'list[Union[tuple, list[tuple]]]'
-type HelperManagerSpec = Union['dict[str, HiveManager]', 'list[HiveManager]']
-type HelperLoadEventsResult = Union['dict[str, DataFrame]', 'list[DataFrame]']
+HelperConfigPath = 'Optional[Union[str, Path, list[Union[str, Path]]]]'
+HelperOutputPath = Optional[Union[str, Path]]
+HelperFilenameSpec = 'list[Union[tuple, list[tuple]]]'
+HelperManagerSpec = Union['dict[str, HiveManager]', 'list[HiveManager]']
+HelperLoadEventsResult = Union['dict[str, DataFrame]', 'list[DataFrame]']
 
 ##
 
