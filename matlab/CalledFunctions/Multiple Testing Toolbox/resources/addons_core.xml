@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<addonCore>
+
+  <label>Multiple Testing Toolbox</label>
+
+  <version>1.1.0</version>
+
+  <type>Toolbox</type>
+
+  <identifier>d0dcf343-6d4c-4e01-9a51-098f06588f38</identifier>
+
+  <summary>This toolbox includes eight different approaches to deal with the Multiple Comparisons Problem.</summary>
+
+  <description>The "Multiple Testing Toolbox" includes a compilation of eight different algorithms to deal with the Multiple Comparisons Problem, focusing on both the correction of the Family-Wise Error Rate (FWER), and the False Discovery Rate (FDR) as well.
+
+All the included methods provide the adjusted p-values, the adjusted significance level, the number of rejected null hypotheses and extra relevant information. An example of use of each one is provided in the header.
+
+The algorithms are enumerated below:
+- fwer_bonf: Bonferroni correction of the FWER.
+- fwer_sidak: Šidák correction of the FWER.
+- fwer_holmbonf: Holm-Bonferroni correction of the FWER (also known as sequential Bonferroni).
+- fdr_BH: Benjamini-Hochberg correction of the FDR.
+- fdr_BY: Benjamini-Yekutieli correction of the FDR.
+- fdr_storey: Storey correction of the positive FDR, which returns the computed q-values.
+- mt_fisher: Combined Probability of Fisher correction.
+
+Check the header of each algorithm for further information.
+
+Please, cite this project in your publications if you are going to use these scripts for your research work.</description>
+
+  <createdBy name="Víctor Martínez-Cagigal"/>
+
+  <image>resources/screenshot.png</image>
+
+</addonCore>
