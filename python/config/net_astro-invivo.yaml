@@ -1,0 +1,58 @@
+# net_astro-invivo.yaml
+# Parameters used for in vivo analyses
+
+# -------------------------------------------------------------------------- #
+
+# (More compact / legible) internal condition labels
+# (Keys are the raw labels used in filenames)
+condition_labels:
+  saline: saline
+  Saline: saline
+  1mgKg: CNO-1
+  5mgKg: CNO-5
+
+# Example in this format:
+# TODO
+filename_spec:
+  - ['date', 'date', '%Y%m%d']
+  - ['raw', 'mouse']
+  - ['switch', 'condition', '$condition_labels']
+  - ['raw', 'notes']
+  - ['raw', 'magnification']
+  - ['number', 'scale']
+  - ['raw', 'unknown'] # TODO unknown what this part of the filename is
+  - ['raw', 'setup']
+  - ['raw', 'duration']
+  - ['raw', 'epoch']
+  - ['suffix', '{suffix}']
+
+# TODO
+postprocessing:
+  dataset_keys:
+    - filename
+    - dataset_id
+    - condition
+    - mouse
+    - epoch
+    - notes
+    - magnification
+    - scale
+    - unknown
+    - setup
+    - duration
+  header_keys: []
+
+  decorators: []
+  extra_decorators_default:
+    - ['grid_abs', 20, 400]
+  global_decorators:
+    - ['coreg', 'dataset_id_all',
+       ['condition', 'mouse', 'epoch', 'dataset_id']]
+  
+  exclude_ramp: False
+
+# Experiments to include in each named analysis
+analyses:
+  invivo:
+    experiments:
+      - InVivo

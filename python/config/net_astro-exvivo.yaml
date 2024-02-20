@@ -1,0 +1,92 @@
+# net_astro-exvivo.yaml
+# Parameters used for testing refactor of `uncaging.py`
+
+# -------------------------------------------------------------------------- #
+
+# (More compact / legible) internal condition labels
+# (Keys are the raw labels used in filenames)
+condition_labels:
+  RuBiGABA: GABA
+  RuBiGlu: Glu
+  NoRuBi: None
+
+# `matplotlib` color labels for each condition label
+condition_colors:
+  GABA: m
+  Glu: b
+  None: "y"
+
+# Example in this format:
+# 20200810_CytoGp31m_S1_RuBiGABA1_10stim-009Cycle00001_Ch1_cell-events-marked.mat
+# date     mouse     sl cond/fov  description          ch  suffix
+filename_spec:
+  - ['date', 'date', '%Y%m%d']
+  - ['raw', 'mouse']
+  - ['number', 'slice']
+  - - ['switch', 'condition', '$condition_labels']
+    - ['number', 'fov']
+  - ['raw', 'description']
+  - ['number', 'channel']
+  - ['suffix', '{suffix}']
+
+# TODO Explain this structure in documentation
+postprocessing:
+  dataset_keys:
+    - filename
+    - dataset_id
+    - condition
+    - mouse
+    - slice
+    - fov
+  header_keys:
+    - uncageCell
+
+  decorators:
+    - ['start_time_rel']
+    - ['is_uncage']
+  extra_decorators_default:
+    - ['grid_abs', 20, 300]
+  global_decorators:
+    - ['coreg', 'fov_coreg',
+       ['mouse', 'slice', 'fov']]
+    - ['coreg', 'slice_all',
+       ['condition', 'mouse', 'slice']]
+    - ['coreg', 'slice_coreg',
+       ['mouse', 'slice']]
+    - ['coreg', 'dataset_id_all',
+       ['condition', 'mouse', 'slice', 'fov', 'dataset_id']]
+    - ['coreg', 'cell_global_all',
+       ['dataset_id_all', 'cell']]
+    - ['coreg', 'cell_global_coreg',
+       ['mouse', 'slice', 'fov', 'cell']]
+    - ['coreg_grids', ['mouse', 'slice', 'fov']]
+  
+  exclude_ramp: True
+  ramp_group_key: cell_global
+  ramp_n_events_thresh: 5
+  ramp_p_thresh: 0.1
+
+# TODO Explain this structure in documentation
+analyses:
+  wt:
+    experiments:
+      - Control-Laser
+      - Glu
+      - GABA
+  
+  # TODO For compatibility with the original code as used in the manuscript,
+  # ramping analysis has to be run one experiment at a time; this can be done
+  # by manually adding analyses with a single experiment
+  gaba:
+    experiments:
+      - GABA
+  glu:
+    experiments:
+      - Glu
+  # etc.
+
+  cx43:
+    experiments:
+      - Control-Laser
+      - Cx43-Glu
+      - Cx43-GABA

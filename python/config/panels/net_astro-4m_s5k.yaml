@@ -1,0 +1,95 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4M, S5K
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-4m_s5k
+
+## Reproducibility
+
+random_seed: 274957392
+
+## Analyses
+comparison_key: condition
+comparison: [GABA, Glu]
+
+variants:
+  # Figs. 4M, S5K
+  wt:
+    analysis: wt
+    output_names:
+      prop_fraction_boot: _misc-predict_response-prop_fraction-boot-{condition}
+      prop_fraction_perm: _misc-predict_response-prop_fraction-perm-{condition}
+      prop_fraction: 4m-predict_response-prop_fraction
+
+      overall_rate_boot: _misc-predict_response-overall_rate-boot-{condition}
+      overall_rate_perm: _misc-predict_response-overall_rate-perm-{condition}
+      overall_rate: 4m-predict_response-overall_rate
+
+      save_data: 4m-predict_response-{condition}
+
+      response_diff_sim_prop_fraction: s5k-response_diff_sim-prop_fraction-{condition}
+      response_diff_sim_overall_rate: _misc-response_diff_sim-overall_rate-{condition}
+
+
+## ************************************************************************ ##
+## Key parameters
+
+## Propagation / static split
+prop_threshold: 1. # um
+
+## Responder analysis
+group_key: cell_global_all
+
+responders:
+  window_pre: [-60, 0]
+  window_post: [0, 120]
+
+  ratio_threshold: 1.5
+  min_pre: 1
+  diff_threshold: 0.
+
+features:
+  window: [-60, 0]
+
+rates:
+  window: [-60, 0]
+
+prediction_mark: mark_propTotal_bin
+prediction:
+  # Quantile to split feature at for "high" vs. "low"
+  quantile_split: 0.5
+
+  # TODO Describe
+  aggregate_key: ~
+
+  n_boot: 300
+  hierarchy_boot: [dataset_id_all, cell_global_all]
+
+  n_perm: 300
+
+n_sim_validation: 300
+validation_sim:
+  rate_windows:
+    - [-60, 0] # Used as baseline
+    - [0, 120]
+  prop_model: independent
+  response_model: choose_all
+
+
+## ************************************************************************ ##
+
+
+## Plotting
+
+response_prediction_plot:
+  # null quantile indicates standard error plots
+  quantile: ~

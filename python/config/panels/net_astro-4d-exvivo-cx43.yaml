@@ -1,0 +1,18 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4D configuration
+## ex vivo parameters (Cx43 arm)
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+  
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+analysis: cx43
+
+subset_window: [-60, 0]
+subset_filters:
+  is_uncage: False
+  condition: [GABA, Glu]

@@ -1,0 +1,181 @@
+## ------------------------------------------------------------------------ ##
+## Figs. 4B, S4A, S4B configuration
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-4b_s4a_s4b
+
+## Reproducibility
+
+random_seed: 2198772298
+
+## Analyses
+comparison_key: condition
+comparison: [GABA, Glu]
+
+variants:
+
+  # Figs. 4B, S4A, S4B
+  wt:
+    analysis: wt
+    outputs:
+      mark_response_windowed: '{prefix}-mark_population-{mark}'
+  
+  # For comparison
+  cx43:
+    analysis: cx43
+    outputs:
+      mark_response_windowed: _misc-mark_population-{mark}
+  
+
+## ************************************************************************ ##
+## Key parameters
+
+## Propagation / static split
+prop_threshold: 1. # um
+
+## Marks to test
+figure_marks:
+  4b:
+    - mark_propGrowAP_bin
+  s4a:
+    - mark_area_log
+    # Add whichever keys you'd like to see:
+    # - mark_peri_log
+    # - mark_circMetric_log
+    # - mark_dffMax_log
+    # - mark_fall91_log
+    # - mark_rise19_log
+    # - mark_decayTau_log
+    # - mark_width11_log
+  s4b:
+    - mark_propGrowAnterior_bin
+    # Add whichever keys you'd like to see:
+    # - mark_propGrowPosterior_bin
+    # - mark_propGrowLeft_bin
+    # - mark_propGrowRight_bin
+    # - mark_propShrinkAnterior_bin
+    # - mark_propShrinkPosterior_bin
+    # - mark_propShrinkLeft_bin
+    # - mark_propShrinkRight_bin
+
+stats:
+
+  marks:
+
+    window_baseline: [-60, 0] # s
+    windows_compare: # s
+      - [-60, 0]
+      - [0, 30]
+      - [30, 60]
+      - [60, 90]
+      - [90, 120]
+      - [120, 150]
+    
+    n_boot: 1000
+    # Use this for a full run (takes forever)
+    # n_boot: 10000
+
+    n_perm: 1000
+    # Use this for a full run (takes forever)
+    # n_perm: 10000
+
+    # Time window within which to circularly shift events for permutation
+    # testing
+    window_perm: [-90, 150] # s
+  
+  mark_p_table:
+    # Can be a single bool (for all marks) or a dict (keyed by mark name)
+    two_sided: True
+
+## ************************************************************************ ##
+
+plots:
+
+  mark_display_style:
+
+    mark_propGrowAP_bin: prob
+
+    mark_area_log: ratio
+    mark_peri_log: ratio
+    mark_circMetric_log: ratio
+    mark_dffMax_log: ratio
+    mark_fall91_log: ratio
+    mark_rise19_log: ratio
+    mark_decayTau_log: ratio
+    mark_width11_log: ratio
+
+    mark_propGrowAnterior_bin: prob
+    mark_propGrowPosterior_bin: prob
+    mark_propGrowLeft_bin: prob
+    mark_propGrowRight_bin: prob
+    mark_propShrinkAnterior_bin: prob
+    mark_propShrinkPosterior_bin: prob
+    mark_propShrinkLeft_bin: prob
+    mark_propShrinkRight_bin: prob
+  
+  mark_transform:
+
+    mark_propGrowAP_bin: ~
+
+    mark_area_log: log
+    mark_peri_log: log
+    mark_circMetric_log: log
+    mark_dffMax_log: log
+    mark_fall91_log: log
+    mark_rise19_log: log
+    mark_decayTau_log: log
+    mark_width11_log: log
+
+    mark_propGrowAnterior_bin: ~
+    mark_propGrowPosterior_bin: ~
+    mark_propGrowLeft_bin: ~
+    mark_propGrowRight_bin: ~
+    mark_propShrinkAnterior_bin: ~
+    mark_propShrinkPosterior_bin: ~
+    mark_propShrinkLeft_bin: ~
+    mark_propShrinkRight_bin: ~
+  
+  display_ylim:
+    prob: [-0.1, 0.15]
+    ratio: [0.8, 1.3]
+  
+  display_ylabel:
+    prob: Probability ($\Delta$ from baseline)
+    ratio: Fold change vs baseline
+
+  mark_response_windowed:
+    # Quantile over bootstraps to show CI with
+    # `~` (equivalent to `null`) means to use the SE, rather than a quantile
+    quantile: ~
+    # quantile: 0.05
+
+    normalized: True
+
+    # Which number to use for p-value asterisk labels
+    sig_key: q_corrected
+
+    dots:
+      markersize: 15
+
+    cis:
+      linewidth: 2.
+    
+    unity:
+      color: 'k'
+      linewidth: 1.
+    
+    window_separators:
+      color: 'k'
+      linewidth: 1.
+
+    ylim_ratio: [0.8, 1.3]
+    ylim_prob: [-0.1, 0.15]

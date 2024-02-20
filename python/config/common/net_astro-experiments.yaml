@@ -1,0 +1,159 @@
+# net_astro-experiments.yaml
+# Common descriptons of experiment datasets
+
+# -------------------------------------------------------------------------- #
+
+experiments:
+  # Vanilla WT
+  - name: RuBi
+    hive_path: ['events', 'wt']
+    hive_suffix: cell-events
+    query: []
+    color: k
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: GABA
+    hive_path: ['events', 'wt']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: Glu
+    hive_path: ['events', 'wt']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  
+  # 1 pulse
+  - name: RuBi-1pulse
+    hive_path: ['events', '1pulse']
+    hive_suffix: cell-events
+    query: []
+    color: k
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: GABA-1pulse
+    hive_path: ['events', '1pulse']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: Glu-1pulse
+    hive_path: ['events', '1pulse']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # Repeated stimulus (25AU)
+  - name: RuBi-repeat
+    hive_path: ['events', 'repeat_25au']
+    hive_suffix: cell-events
+    query: []
+    color: k
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: GABA-repeat
+    hive_path: ['events', 'repeat_25au']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: Glu-repeat
+    hive_path: ['events', 'repeat_25au']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # Repeated stimulus (70AU)
+  - name: RuBi-repeat-70
+    infer_analysis: wt-repeat-70
+    hive_path: ['events', 'repeat_70au']
+    hive_suffix: cell-events
+    query: []
+    color: k
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: GABA-repeat-70
+    infer_analysis: wt-repeat-70
+    hive_path: ['events', 'repeat_70au']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: Glu-repeat-70
+    infer_analysis: wt-repeat-70
+    hive_path: ['events', 'repeat_70au']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # CBX
+  - name: CBX-GABA
+    hive_path: ['events', 'cbx']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: CBX-Glu
+    hive_path: ['events', 'cbx']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # Cx43fl
+  - name: Cx43-GABA
+    hive_path: ['events', 'cx43fl']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: Cx43-Glu
+    hive_path: ['events', 'cx43fl']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # Receptor antagonists
+  - name: GABA-CGP
+    hive_path: ['events', 'receptor_antagonist']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'GABA']
+    color: m
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+  - name: Glu-LY
+    hive_path: ['events', 'receptor_antagonist']
+    hive_suffix: cell-events
+    query:
+      - ['condition', 'Glu']
+    color: b
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # Laser control (no RuBi)
+  - name: Control-Laser
+    hive_path: ['events', 'laser_control']
+    hive_suffix: cell-events
+    query: []
+    color: g
+    ramp_path_template: ['..', 'intermediates', 'ramping', 'ramping_{experiment}.csv']
+
+  # in vivo comparison
+  - name: InVivo
+    hive_path: ['events', 'invivo']
+    hive_suffix: net-events
+    query: []
+    color: k

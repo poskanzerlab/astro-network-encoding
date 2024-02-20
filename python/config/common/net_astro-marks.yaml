@@ -1,0 +1,66 @@
+# net_astro-marks.yaml
+# Human-readable descriptions of individual AQuA marks (features)
+
+# -------------------------------------------------------------------------- #
+
+mark_axis_labels_diff:
+  mark_area_log: TODO
+  mark_dffMax_log: TODO
+  mark_width55_log: TODO
+  mark_propGrowAnterior_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propGrowLeft_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propGrowPosterior_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propGrowRight_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propShrinkAnterior_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propShrinkLeft_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propShrinkPosterior_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propShrinkRight_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propGrowAP_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propGrowLR_bin: Propagation probability ($\Delta$ from baseline)
+  mark_propGrowAny_bin: Propagation probability ($\Delta$ from baseline)
+  mark_circMetric_log: TODO
+  mark_decayTau_log: TODO
+  mark_dffMax2_log: TODO
+  mark_fall91_log: TODO
+  mark_peri_log: TODO
+  mark_rise19_log: TODO
+  mark_width11_log: TODO
+  mark_propGrowAnterior_log: TODO
+  mark_propGrowLeft_log: TODO
+  mark_propGrowPosterior_log: TODO
+  mark_propGrowRight_log: TODO
+  mark_propShrinkAnterior_log: TODO
+  mark_propShrinkLeft_log: TODO
+  mark_propShrinkPosterior_log: TODO
+  mark_propShrinkRight_log: TODO
+
+mark_descriptions:
+  mark_area_log: Area
+  mark_dffMax_log: Peak dF/F
+  mark_width55_log: Duration (half-peak)
+  mark_propGrowAnterior_bin: Growth away from pia
+  mark_propGrowLeft_bin: Growth to the left
+  mark_propGrowPosterior_bin: Growth toward the pia
+  mark_propGrowRight_bin: Growth to the right
+  mark_propShrinkAnterior_bin: Shrinkage from deep
+  mark_propShrinkLeft_bin: Shrinkage from the left
+  mark_propShrinkPosterior_bin: Shrinkage from the pia
+  mark_propShrinkRight_bin: Shrinkage from the right
+  mark_propGrowAP_bin: Growth in the depth axis
+  mark_propGrowLR_bin: Growth in the lateral-medial axis
+  mark_propGrowAny_bin: Growth in any axis
+  mark_circMetric_log: Circularity
+  mark_decayTau_log: Decay time constant
+  mark_dffMax2_log: Peak dF/F (Method 2)
+  mark_fall91_log: Fall time
+  mark_peri_log: Perimeter
+  mark_rise19_log: Rise time
+  mark_width11_log: Duration (10% peak)
+  mark_propGrowAnterior_log: Growth away from pia
+  mark_propGrowLeft_log: Growth to the left
+  mark_propGrowPosterior_log: Growth toward the pia
+  mark_propGrowRight_log: Growth to the right
+  mark_propShrinkAnterior_log: Shrinkage from deep
+  mark_propShrinkLeft_log: Shrinkage from the left
+  mark_propShrinkPosterior_log: Shrinkage from the pia
+  mark_propShrinkRight_log: Shrinkage from the right

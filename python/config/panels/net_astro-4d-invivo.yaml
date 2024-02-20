@@ -1,0 +1,26 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4D configuration
+## ex vivo parameters
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+  
+helper_configs:
+  - [config, common]
+  - [config, net_astro-invivo.yaml]
+hive_root: ['..', data]
+
+analysis: invivo
+
+## Event subset for analysis
+# subset_conditions:
+#   - saline
+#   - CNO-1
+#   - CNO-5
+# subset_epochs:
+#   - Baseline
+
+subset_filters:
+  condition: [saline, CNO-1, CNO-5]
+  epoch: [Baseline]
+  mark_isStationary: $> 0

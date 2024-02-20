@@ -1,0 +1,95 @@
+## ------------------------------------------------------------------------ ##
+## Figs. 4H, 4K, 4L S6E, S6F
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-4h_4k_4l_s6e_s6f
+
+## Reproducibility
+
+random_seed: 347322389
+
+## Analyses
+comparison_key: condition
+comparison: [GABA, Glu]
+
+variants:
+  # Figs. 4H, 4L
+  wt_prop:
+    analysis: wt
+    event_type: prop
+    event_type_label: Propagative
+    output_names:
+      responder_fraction_plot: 4h-responder_fraction_wt_prop
+      active_comparison_plot_venn: 4l-responder_overlap_wt_prop
+  # Fig. ...
+  wt_static:
+    analysis: wt
+    event_type: static
+    event_type_label: Static
+    output_names:
+      responder_fraction_plot: s6e-responder_fraction_wt_static
+  # Fig. ...
+  cx43_prop:
+    analysis: cx43
+    event_type: prop
+    output_names:
+      responder_fraction_plot: 4k-responder_fraction_cx43_prop
+  # Fig. ...
+  cx43_static:
+    analysis: cx43
+    event_type: static
+    output_names:
+      responder_fraction_plot: s6f-responder_fraction_cx43_static
+  
+
+
+## ************************************************************************ ##
+## Key parameters
+
+## Propagation / static split
+prop_threshold: 1. # um
+
+## Responder analysis
+responders:
+  window_pre: [-60, 0]
+  window_post: [0, 120]
+
+  ratio_threshold: 1.5
+  min_pre: 1
+
+responder_fractions:
+  unit_group_key: cell_global_all
+  block_key: dataset_id_all
+  pair_key: ~
+
+  n_boot: 10000
+  hierarchy_boot:
+    - dataset_id_all
+    - cell_global_all
+
+  n_perm: 10000
+
+overlap_responder_key: cell_global_all
+
+
+## ************************************************************************ ##
+
+
+## Plotting
+
+responder_fraction_plot:
+  # null quantile indicates standard error plots
+  quantile: ~
+
+significance_plot:
+  start: 1.1
+  spacing: 0.12

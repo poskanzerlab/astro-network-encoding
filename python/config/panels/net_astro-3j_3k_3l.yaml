@@ -1,0 +1,104 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 3J, 3K, 3L configuration
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-3j_3k_3l
+
+## Reproducibility
+
+random_seed: 473918387
+
+variants:
+
+  wt:
+    analysis: wt
+    output_names:
+      fovs: 3k-fov_roi_overlap
+      distance_distribution: 3j-distance_distribution
+
+  cx43:
+    analysis: cx43
+    output_names:
+      fovs: _misc-fov_roi_overlap
+      distance_distribution: _misc-distance_distribution
+
+
+## ************************************************************************ ##
+## Key parameters
+
+comparison_key: condition
+# Only supports two conditions for comparison
+# (the overlap stats assume a pair)
+comparison:
+  - GABA
+  - Glu
+
+# Size of ROI on a side
+grid_scale: 20 # um
+
+# Amount the ROI grid should extend in each cardinal direction, relative to the
+# from uncaging site
+grid_extent: 300 # um
+
+responders:
+  window_pre: [-60, 0] # s
+  window_post: [0, 120] # s
+  ratio_threshold: 1.5
+  diff_threshold: 0.02 # Hz
+  min_pre: 1
+
+# Fig. 3L: Overlap
+overlap:
+  n_boot: 10000
+
+  n_perm: 10000
+  # TODO Explain other choices
+  perm_n_strategy: ratio_active
+  perm_choice_strategy: individual
+
+
+## ************************************************************************ ##
+
+
+## Plotting
+
+plots:
+
+  fovs:
+    figsize: [10, 4]
+
+    uncage_site:
+      color: r
+      markersize: 15.
+    
+    # Uncomment to show individual event centroids
+    # events:
+    #   color: k
+    #   alpha: 0.5
+    #   markersize: 0.5
+
+    pre_active_rois:
+      alpha: 0.2
+      linewidth: 1.
+    
+    post_active_rois:
+      alpha: 0.4
+      linewidth: 2.
+  
+  distance_distribution:
+    figsize: [6, 2]
+
+    extent: 250.
+    bin_width: 25.
+
+    hists:
+      alpha: 0.5

@@ -1,0 +1,65 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4F+S6B (WT), 4J+S6C (Cx43) configuration
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-4f_4j_s6b_s6c
+
+## Reproducibility
+
+random_seed: 579800579
+
+## Analyses
+comparison_key: condition
+comparison: [GABA, Glu]
+
+
+## ************************************************************************ ##
+## Key parameters
+
+## Propagation / static split
+prop_threshold: 1. # um
+
+## Rate statistics
+rate_stats:
+  point_key: dataset_id_all
+
+  # TODO Specify in notebook
+  # keep_keys: 
+  #   - fov_coreg
+  
+  window_baseline: [-60, 0]
+  windows_compare:
+    - [-60, 0]
+    - [0, 30]
+    - [30, 60]
+    - [60, 90]
+    - [90, 120]
+    - [120, 150]
+
+  n_boot: 10000
+  hierarchy_boot: [dataset_id_all, cell_global_all]
+  
+  n_perm: 10000
+  window_perm: [-90, 150]
+
+## ************************************************************************ ##
+
+
+## Plotting
+rate_plot:
+  quantile: ~
+  markersize: 15
+  linewidth_ci: 2
+  linewidth_unity: 1
+  linewidth_xticks: 1
+  ylim: [0, 2.5]
+  xticks: [-60, 0, 30, 60, 90, 120, 150]

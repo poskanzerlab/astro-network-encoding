@@ -1,0 +1,18 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4D configuration
+## ex vivo parameters (WT arm)
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+  
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+analysis: wt
+
+subset_window: [-60, 0]
+subset_filters:
+  is_uncage: False
+  condition: [GABA, Glu]

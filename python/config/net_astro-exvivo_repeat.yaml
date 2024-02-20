@@ -1,0 +1,97 @@
+# net_astro-exvivo_repeat.yaml
+# Parameters used for repeated uncaging ex vivo analyses
+
+# -------------------------------------------------------------------------- #
+
+# (More compact / legible) internal condition labels
+# (Keys are the raw labels used in filenames)
+condition_labels:
+  RuBiGABA: GABA
+  RuBiGlu: Glu
+  NoRuBi: None
+
+# `matplotlib` color labels for each condition label
+condition_colors:
+  GABA: m
+  Glu: b
+  None: "y"
+
+# TODO I just put this directly in-line below
+# moco_labels:
+#   moco: True
+#   nomoco: False
+
+# Examples in this format:
+# 20230201_CytoGp28f_S1_R1_RuBiGABA2_004_          Ch0_moco_  cell-events.mat
+# 20230213_CytoGp33f_S2_R1_RuBiGABA2_016Cycle00001_Ch1_nomoco_cell-events.mat
+# date     mouse     sl rep cond/fov description   ch  moco   suffix
+filename_spec:
+  - [date, date, '%Y%m%d']
+  - [raw, mouse]
+  - [number, slice]
+  - [number, repeat]
+  - - [switch, condition, $condition_labels]
+    - [number, fov]
+  - [raw, description]
+  - [number, channel]
+  - [switch, is_moco,
+    {
+      moco: True,
+      nomoco: False
+    } ]
+  - [suffix, '{suffix}']
+
+# TODO Explain this structure in documentation
+postprocessing:
+  dataset_keys:
+    - filename
+    - dataset_id
+    - condition
+    - repeat
+    - mouse
+    - slice
+    - fov
+  header_keys:
+    - uncageCell
+
+  decorators:
+    - [start_time_rel]
+    - [is_uncage]
+  extra_decorators_default:
+    - [grid_abs, 20, 300]
+  global_decorators:
+    # TODO: 'condition' is included in 'fov_coreg' because each slice was only
+    # exposed to one NT in the paper dataset, but this may not generalize to
+    # datasets from others
+    - [coreg, fov_coreg,
+       [condition, mouse, slice, fov]]
+    - [coreg, slice_all,
+       [condition, mouse, slice]]
+    # TODO: vvv same as above for 'fov_coreg'
+    - [coreg, slice_coreg,
+       [condition, mouse, slice]]
+    - [coreg, dataset_id_all,
+       [condition, mouse, slice, fov, repeat, dataset_id]]
+    - [coreg, cell_global_all,
+       [dataset_id_all, cell]]
+    # TODO: vvv same as above for 'fov_coreg'
+    - [coreg, cell_global_coreg,
+       [condition, mouse, slice, fov, cell]]
+    - [coreg_grids,
+       [mouse, slice, fov]]
+    
+  exclude_ramp: True
+  ramp_group_key: cell_global
+  ramp_n_events_thresh: 5
+  ramp_p_thresh: 0.1
+
+# TODO
+analyses:  
+  wt-repeat:
+    experiments:
+      - GABA-repeat
+      - Glu-repeat
+  wt-repeat-70:
+    experiments:
+      - GABA-repeat-70
+      - Glu-repeat-70

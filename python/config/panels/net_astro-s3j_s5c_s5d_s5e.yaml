@@ -1,0 +1,103 @@
+## ------------------------------------------------------------------------ ##
+## Figs. S3J, S5C, S5D, S5E
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-s3j_s5c_s5d_s5e
+
+## Reproducibility
+
+random_seed: 249835798
+
+## Analyses
+comparison_key: condition
+comparison: [GABA, Glu]
+
+variants:
+
+  # For Figs. S3J, S5C, S5D, S5E
+  wt:
+    analysis: wt
+
+    add_grid_decorator: True
+
+    group_key: cell_global_all
+    group_key_coreg: cell_global_coreg
+    group_key_grid: grid_global_{scale}
+    group_key_coreg_grid: grid_global_{scale}_coreg
+
+    output_names:
+      relative_rates_grids: s3j-post_relative_rates_grids
+      rates: s5c-rate_scatter
+      relative_rates_cells: s5d-post_relative_rates_cells
+      baseline_prop_fraction: s5e_top-baseline_prop_fraction
+      baseline_rate_overall: s5e_bottom-baseline_rate_overall
+
+
+## ************************************************************************ ##
+## Key parameters
+
+# Propagation / static split
+prop_threshold: 1. # um
+
+grid_scale: 20 # um
+grid_extent: 300 # um
+
+window_pre: [-60, 0]
+window_post: [0, 120]
+
+# Quantile split used in other analyses (for visualization)
+quantile_split: 0.5
+
+responders:
+  ratio_threshold: 1.5
+
+
+## ************************************************************************ ##
+
+
+## Plotting
+
+plots:
+  rates:
+    figsize: [3, 3]
+
+    xl_prop: [-0.01, 0.23]
+    xl_static: [-0.05, 1.1]
+
+    unity_line:
+      alpha: 0.5
+      linewidth: 1.
+    dots:
+      alpha: 0.1
+      markersize: 3
+    
+    # Adding these makes the amount of responders pop a little more
+    # threshold_liens:
+    #   alpha: 0.2
+    #   linewidth: 1.
+    # dots_responders:
+    #   alpha: 0.1
+    #   markersize: 5
+
+  relative_rates:
+    figsize: [4, 2]
+    hists:
+      alpha: 0.4
+    split:
+      linewidth: 2.
+
+  baseline_prop_fraction:
+    figsize: [5, 3]
+    hists:
+      alpha: 0.4
+    split:
+      linewidth: 2.

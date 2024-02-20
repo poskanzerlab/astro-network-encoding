@@ -1,0 +1,48 @@
+## ------------------------------------------------------------------------ ##
+## Ramping cell analysis
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output, ramping]
+notebook_stem: net_astro-ramping
+
+random_seed: 347322389
+
+
+## ************************************************************************ ##
+## Key parameters
+
+## Ramping analysis
+
+group_key: 'cell_global'
+
+ramp_window: [-90, -10] # s, relative to uncaging
+ramp_bin_width: 1. # s
+
+p_thresh_ramp: 0.2
+
+
+## ************************************************************************ ##
+
+
+## Validation display
+
+eval_rate_window: [-90, 120] # s., relative to uncaging
+eval_rate_spacing: 1. # s
+
+rate_kernel_type: epanechnikov
+rate_kernel_width: 15. # s
+
+# Plotting
+raster_height_small: 3
+raster_height_large: 6
+
+
+#

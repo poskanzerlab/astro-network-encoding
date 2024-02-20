@@ -1,0 +1,39 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4I configuration
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-4i
+
+## Reproducibility
+
+random_seed: 214687912
+
+## Analyses
+comparison: [GABA, Glu]
+
+## ************************************************************************ ##
+## Key parameters
+
+## Propagation / static split
+prop_threshold: 1. # um
+
+## Feature extraction
+rate_point_key: dataset_id_all
+rate_windows:
+  baseline: [-60, 0]
+  post: [0, 120]
+
+## Stats
+n_boot: 10000
+n_perm: 10000
+
+## ************************************************************************ ##

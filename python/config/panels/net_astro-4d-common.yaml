@@ -1,0 +1,69 @@
+## ------------------------------------------------------------------------ ##
+## Fig. 4D configuration
+## Common parameters
+## ------------------------------------------------------------------------ ##
+
+## Task setup
+
+# Helper config files for individual constituent datasets
+analysis_params_filenames:
+  cx43: [config, panels, net_astro-4d-exvivo-cx43.yaml]
+  wt: [config, panels, net_astro-4d-exvivo-wt.yaml]
+  invivo: [config, panels, net_astro-4d-invivo.yaml]
+
+# Ordering for display
+analyses:
+  - invivo
+  - wt
+  - cx43
+
+comparisons:
+  - [invivo, wt]
+  - [wt, cx43]
+
+## Helper setup
+helper_configs:
+  - [config, common]
+hive_root: ['..', data]
+output_parent: ['..', output]
+
+## Outputs
+notebook_stem: net_astro-4d
+
+## Reproducibility
+random_seed: 185298389
+
+## Plotting
+plotting:
+  analysis_colors:
+    invivo: r
+    wt: g
+    cx43: b
+
+  analysis_names:
+    invivo: in vivo
+    wt: ex vivo (WT)
+    cx43: ex vivo (Cx43)
+
+  prop_fraction:
+    bar_off_alpha: 0.5
+    line_offset: 0.165
+    line_width: 2.
+    dots_offset: -0.165
+    dots_noise: 0.08
+    dots_alpha: 0.5
+    dots_markersize: 3.
+
+## ************************************************************************ ##
+## Key parameters
+
+prop:
+  key: 'mark_propTotal'
+  threshold: 1. # um
+
+stats:
+  prop_fraction:
+    group_key: dataset_id
+    n_boot: 10000
+
+## ************************************************************************ ##

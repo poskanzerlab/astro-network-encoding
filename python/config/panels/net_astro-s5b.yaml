@@ -1,0 +1,69 @@
+## ------------------------------------------------------------------------ ##
+## Fig. S5B
+## ------------------------------------------------------------------------ ##
+
+## Helper setup
+
+helper_configs:
+  - [config, common]
+  - [config, net_astro-exvivo.yaml]
+hive_root: ['..', data]
+
+# Outputs
+output_parent: ['..', output]
+notebook_stem: net_astro-s5b
+
+## Reproducibility
+
+random_seed: 347322389
+
+## Analyses
+comparison_key: condition
+comparison: [GABA, Glu, None]
+
+variants:
+  wt_prop:
+    analysis: wt
+    event_type: prop
+    event_type_description: Propagative
+    output_names:
+      raster: s5b-TODO-prop
+  wt_static:
+    analysis: wt
+    event_type: static
+    event_type_description: Static
+    output_names:
+      raster: s5b-TODO-static
+  cx43_prop:
+    analysis: cx43
+    event_type: prop
+    event_type_description: Propagative
+  cx43_static:
+    analysis: cx43
+    event_type: static
+    event_type_description: Static
+
+
+## ************************************************************************ ##
+## Key parameters
+
+## Propagation / static split
+prop_threshold: 1. # um
+
+## Raster sorting
+window_plot: [-60, 120] # s
+window_sort: [0, 120] # s
+group_key: cell_global
+coreg_key: cell_coreg
+
+
+## ************************************************************************ ##
+
+
+## Plotting
+
+plots:
+  raster:
+    figsize: [6, 8]
+
+#
