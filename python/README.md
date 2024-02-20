@@ -21,19 +21,19 @@ conda env create -n astro-network-encoding -f=environments/astro-network-encodin
 
 These scripts take as input HDF-5 files (or `mat`-files in a HDF-compatible format) that contain summarized tables of AQuA event characteristics, in order to  save memory and hard disk space.
 
-The event files used for generating figures in the paper are located in the [Dryad repository](TODO), as `TODO`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
-1. Place the extracted contents of `TODO` into `data/events` (so that `data/events` should contain many subdirectories, such as `X`, `Y`, etc.).
+The event files used for generating figures in the paper are located in the [Dryad repository](TODO) (link pending data deposition), as `events.zip`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
+1. Place the extracted contents of `events.zip` into `data/` (so that `data/events/` should contain many subdirectories, such as `1pulse`, `cbx`, etc.).
 
-To generate your own event tables from full AQuA `res` files, run `aqua_export.m` on your dataset (see documentation there).
+To generate your own event tables from full AQuA `res` files, run the MATLAB conversion script `conversion/aqua_export.m` on your dataset (see documentation there).
 
 ### Ramping cells (`intermediates`)
 
 These scripts also take as input files specifying the "ramping" characteristics of individual cells (see paper *Methods*).
 
-The ramping cell specification files used in the paper are located in the [Dryad repository](TODO), as `TODO`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
-1. Place the extracted contents of `TODO` into `intermediates/ramping` (so that TODO).
+The ramping cell specification files used in the paper are located in the [Dryad repository](TODO) (link pending data deposition), as `ramping.zip`. The configuration files in the `config` folder are set up to use these files by default. To use this original data:
+1. Place the extracted contents of `ramping.zip` into `intermediates/` (so that `intermediates/ramping/` should contain many `csv` files, such as `ramping_CBX-GABA.csv`, etc.).
 
-To generate your own ramping cell tables from extracted event tables, see TODO.
+To generate your own ramping cell tables from extracted event tables, see `net_astro-ramping.ipynb`.
 
 ### Notebooks for figure panels
 
@@ -65,6 +65,6 @@ To generate your own ramping cell tables from extracted event tables, see TODO.
 
 ## Notes
 
-* Docstrings within individual notebooks are incomplete (marked with "TODO") as of initial release-time; check back here for updates that fill them in!
+* Many docstrings within individual notebooks are still incomplete (marked with "TODO") as of initial release-time; check back here for updates that fill them in!
 * There may be subtle differences in p-values or confidence intervals (particularly ones involving resampling) from the exact values for analyses reported in the paper, due to differences in the cached random seeds.
 * Additionally, certain outputs seen in notebooks were subsequently produced with lower numbers of iterations than the runs used in the original paper during preparation for distribution, as for certain analyses, full runs with the original number of iterations takes a substantial amount of time; however, numbers of resampling iterations are provided in the corresponding `config` files for users to manipulate.
